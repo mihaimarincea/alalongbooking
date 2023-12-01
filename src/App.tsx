@@ -42,8 +42,8 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#FAFBFC]">
       <div className="max-w-screen-xl	mx-auto flex flex-col lg:flex-row md:flex-row md:gap-12 h-screen md:h-auto">
-        <div className="w-full md:max-w-[400px] h-full md:sticky top-0 p-4">
-          <div className="mt-5 z-50">
+        <div className="w-full md:max-w-[400px] h-full md:sticky top-0 px-4">
+          <div className="mt-10 z-50 pt-3 ">
             <Logo resetSearch={resetSearch} />
           </div>
           <div className="mt-[50px]">
@@ -62,7 +62,7 @@ const App: React.FC = () => {
             </p>
             <p className="text-base md:text-md"></p>
           </div>
-          <div className="mt-[70px] opacity-70 text-sm flex flex-row gap-4 justify-between mb-1">
+          <div className="mt-[40px] opacity-70 text-sm flex flex-row gap-4 justify-between">
             <div>
               {" "}
               <p>Contact us</p>
@@ -80,7 +80,7 @@ const App: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="max-w-6xl w-full absolute md:relative bg-mainbg z-50 ">
+        <div className="max-w-6xl w-full absolute md:relative bg-mainbg  z-50 ">
           <div className="hidden md:block mt-5">
             {!searchPerformed && <Gallery />}
           </div>

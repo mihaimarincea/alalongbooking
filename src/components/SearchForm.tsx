@@ -85,8 +85,8 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
         />
       </div>
 
-      <div className="relative flex gap-4 flex-wrap z-50 picker w-full flex-1">
-        <div className="w-[300px]">
+      <div className="relative flex gap-4  z-50 picker w-full flex-1">
+        <div className="flex-1">
           <label>Dates for Check In and Check Out</label>
           <Datepicker
             inputClassName={
