@@ -1,12 +1,11 @@
 // Gallery.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const Gallery = () => {
   const images = [
-    '/hero/intro_img.jpg', // Replace with actual image paths
-    '/hero/intro_img1.jpg',
-    '/hero/intro_img2.jpg',
-    // ...add as many images as you have
+    "/images/hero/intro_img.jpg",
+    "/images/hero/intro_img1.jpg",
+    "/images/hero/intro_img2.jpg",
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -26,7 +25,9 @@ const Gallery = () => {
           key={image}
           src={image}
           alt={`Slide ${index}`}
-          className={`gallery-image ${index === currentImageIndex ? 'visible' : 'invisible'}`}
+          className={`gallery-image ${
+            index === currentImageIndex ? "visible" : "invisible"
+          }`}
         />
       ))}
     </div>
