@@ -43,7 +43,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-[#FAFBFC]">
       <div className="max-w-screen-xl	mx-auto flex flex-col lg:flex-row md:flex-row md:gap-12 h-screen md:h-auto">
         <div className="w-full md:max-w-[400px] h-full md:sticky top-0 p-4">
-          <div className="mt-[35px]">
+          <div className="mt-5">
             <Logo resetSearch={resetSearch} />
           </div>
           <div className="mt-[70px]">
@@ -55,7 +55,7 @@ const App: React.FC = () => {
             <p className="text-base md:text-md">
               Our curated unique destinations offer more than just a stay, they
               promise a lifestyle. Find your next long-term haven to relish
-              life's journey. Your awesome adventure with 'à la longue' awaits!
+              life's journey. Your awesome adventure with 'À la longue' awaits!
             </p>
             <p className="text-base md:text-md"></p>
           </div>
@@ -70,7 +70,7 @@ const App: React.FC = () => {
               <p>Privacy Policy</p>
               <p>General Data Protection</p>
               <br />
-              <p>Copywrite 2023 @ à la longue</p>{" "}
+              <p>Copywrite 2023 @ À la longue</p>{" "}
             </div>
             <div>
               {" "}

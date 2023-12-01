@@ -25,15 +25,26 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
     currency: "USD",
   });
 
+  const [errorMessage, setErrorMessages] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorMessages(false);
     setSearchParams({ ...searchParams, [e.target.name]: e.target.value });
-    console.log("Form change:", { [e.target.name]: e.target.value }); // Log form changes
+    console.log("Form change:", { [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Submitting form with:", searchParams); // Log form submission
+    if (!checkFormInputRequire()) {
+      setErrorMessages(true);
+      return; // Exit the function if any field is empty
+    }
+    console.log("Submitting form with:", searchParams);
     onSearch(searchParams);
+  };
+
+  const checkFormInputRequire = () => {
+    return Object.values(searchParams).every((value) => value.trim() !== "");
   };
 
   return (
@@ -85,6 +96,11 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
           />
         </div>
       </div>
+      {errorMessage && (
+        <span className=" text-red-500 text-xs">
+          Please fill in all the fields
+        </span>
+      )}
       <div>
         <button
           type="submit"
