@@ -38,6 +38,11 @@ span {
   color: #122896;
 }
 
+input[type="date"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+}
+
 input,
 button {
   height: 50px;
