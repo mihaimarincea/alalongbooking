@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = '1c71abb56dmsh28eae1e5af97c61p19628ajsn41b220c9f8e2';
+const API_KEY = '9d7a4091e6msh90bc40d78b4b21bp173c39jsn40ce29ab5cfc';
 
 const instance = axios.create({
     baseURL: 'https://airbnb13.p.rapidapi.com',

@@ -4,12 +4,18 @@ import ResultsDisplay from "./components/ResultsDisplay";
 import Skeleton from "./components/Skeleton";
 import Logo from "./components/UI/Logo";
 import Gallery from "./components/UI/Gallery";
+import Sheet from 'react-modal-sheet';
 import { searchByLocation } from "./services/api";
 
 const App: React.FC = () => {
   const [results, setResults] = useState<any[]>([]); // results initialized as an empty array
   const [isLoading, setIsLoading] = useState(false);
   const [searchPerformed, setSearchPerformed] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+    const toggleSheet = () => {
+        setIsSheetOpen(!isSheetOpen);
+    };
 
   const handleSearch = async (params: any) => {
     setSearchPerformed(true);
@@ -69,7 +75,7 @@ const App: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="max-w-6xl w-full">
+        <div className="max-w-6xl w-full absolute md:relative bg-white">
           <div className="hidden md:block mt-5">
             {!searchPerformed && <Gallery />}
           </div>
@@ -94,6 +100,25 @@ const App: React.FC = () => {
                 searchPerformed={searchPerformed}
               />
             )}
+          </div>
+          <div className="fixed md:hidden  bottom-5 mx:auto ">
+          <button  
+                    onClick={toggleSheet} 
+                    className="md:hidden fixed text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl font-medium rounded-lg text-md px-5 py-3"
+                >
+                    Refine Your Search
+                </button>
+
+                {/* Modal Sheet */}
+                <Sheet isOpen={isSheetOpen} onClose={toggleSheet}>
+                    <Sheet.Container>
+                        <Sheet.Header />
+                        <Sheet.Content>
+                            <SearchForm onSearch={handleSearch} />
+                        </Sheet.Content>
+                    </Sheet.Container>
+                    <Sheet.Backdrop onTap={toggleSheet} />
+                </Sheet>
           </div>
         </div>
       </div>
