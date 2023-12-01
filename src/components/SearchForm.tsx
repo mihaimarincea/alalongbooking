@@ -85,33 +85,39 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
         />
       </div>
 
-      <div className="relative z-50">
-        <label>Date Range</label>
-        <Datepicker
-          value={{
-            startDate: searchParams.checkin,
-            endDate: searchParams.checkout,
-          }}
-          onChange={(range) => {
-            if (range) {
-              handleDateChange(range.startDate, range.endDate);
+      <div className="relative flex gap-4 flex-wrap z-50 picker w-full flex-1">
+        <div className="w-[300px]">
+          <label>Dates for Check In and Check Out</label>
+          <Datepicker
+            inputClassName={
+              "w-full rounded-md border-0 py-2.5 pl-3 pr-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6"
             }
-          }}
-        />
+            useRange={false}
+            primaryColor={"indigo"}
+            value={{
+              startDate: searchParams.checkin,
+              endDate: searchParams.checkout,
+            }}
+            popoverDirection="up"
+            onChange={(range) => {
+              if (range) {
+                handleDateChange(range.startDate, range.endDate);
+              }
+            }}
+          />
+        </div>
+        <div>
+          <label>Adults</label>
+          <input
+            type="number"
+            className="block w-[50px] rounded-md border-0 py-2.5 pl-2.5 pr-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            name="adults"
+            value={searchParams.adults}
+            onChange={handleChange}
+          />
+        </div>
       </div>
-
-      <div>
-        <label>Adults</label>
-        <input
-          type="number"
-          className="block w-[50px] rounded-md border-0 py-2.5 pl-2.5 pr-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          name="adults"
-          value={searchParams.adults}
-          onChange={handleChange}
-        />
-      </div>
-
-      {/* Add other fields like children, infants, pets, etc., if needed */}
+      {/* Other filters here */}
 
       {errorMessage && (
         <span className="text-red-500 text-xs">

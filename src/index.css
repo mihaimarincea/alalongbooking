@@ -26,6 +26,10 @@ button {
   font-family: "Young Serif", serif;
 }
 
+.picker button {
+  font-family: "Outfit", sans-serif;
+}
+
 h4 {
   line-height: 1.2 !important;
 }
