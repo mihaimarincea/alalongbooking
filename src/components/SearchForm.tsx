@@ -3,6 +3,7 @@ import Datepicker from "react-tailwindcss-datepicker";
 
 interface Props {
   onSearch: (params: any) => void; // Adjust the type as needed
+  closeModal: () => void;
 }
 
 const formatDate = (date: Date) => {
@@ -12,7 +13,7 @@ const formatDate = (date: Date) => {
   return `${year}-${month}-${day}`;
 };
 
-const SearchForm: React.FC<Props> = ({ onSearch }) => {
+const SearchForm: React.FC<Props> = ({ onSearch, closeModal }) => {
   const [searchParams, setSearchParams] = useState({
     location: "",
     checkin: formatDate(new Date()),
@@ -55,6 +56,7 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
       return;
     }
     onSearch(searchParams);
+    closeModal();
   };
 
   const checkFormInputRequire = () => {

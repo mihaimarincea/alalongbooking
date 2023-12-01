@@ -17,6 +17,8 @@ const App: React.FC = () => {
     setIsSheetOpen(!isSheetOpen);
   };
 
+  const closeModal = () => setIsSheetOpen(false);
+
   const handleSearch = async (params: any) => {
     setSearchPerformed(true);
     setIsLoading(true);
@@ -52,13 +54,13 @@ const App: React.FC = () => {
               <span>adventure</span>
             </h1>
             <div className="mt-3">
-              <SearchForm onSearch={handleSearch} />
+              <SearchForm onSearch={handleSearch} closeModal={closeModal} />
             </div>
             <br />
             <p className="text-base md:text-md">
               Our curated unique destinations offer more than just a stay, they
-              promise a lifestyle. Find your next long-term haven to relish
-              life's journey. Your awesome adventure with 'À la longue' awaits!
+              offer a lifestyle. Find your next long-term heaven to relish
+              life's journey. Your awesome adventure awaits with 'À la longue'!
             </p>
             <p className="text-base md:text-md"></p>
           </div>
@@ -134,7 +136,7 @@ const App: React.FC = () => {
               <Sheet.Container>
                 <Sheet.Header />
                 <Sheet.Content className="px-5">
-                  <SearchForm onSearch={handleSearch} />
+                  <SearchForm onSearch={handleSearch} closeModal={closeModal} />
                 </Sheet.Content>
               </Sheet.Container>
               <Sheet.Backdrop onTap={toggleSheet} />

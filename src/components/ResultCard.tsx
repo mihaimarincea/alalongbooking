@@ -62,7 +62,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ result }) => {
           {result.beds}
         </p>
         <div className="flex flex-row align-middle justify-between">
-          <p className=" text-l mt-4 text-s">
+          <p className="text-xs mt-4">
             {" "}
             <span className=" text-yellow-400">★</span> {result.rating} (
             {result.reviewsCount} reviews)
