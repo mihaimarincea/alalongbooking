@@ -5,11 +5,18 @@ interface Props {
   onSearch: (params: any) => void; // Adjust the type as needed
 }
 
+const formatDate = (date: Date) => {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // JS months are 0-indexed
+  const day = date.getDate().toString().padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
 const SearchForm: React.FC<Props> = ({ onSearch }) => {
   const [searchParams, setSearchParams] = useState({
     location: "",
-    checkin: "",
-    checkout: "",
+    checkin: formatDate(new Date()),
+    checkout: formatDate(new Date()),
     adults: "1",
     children: "0",
     infants: "0",
@@ -23,36 +30,41 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setErrorMessages(false);
     setSearchParams({ ...searchParams, [e.target.name]: e.target.value });
-    console.log("Form change:", { [e.target.name]: e.target.value });
   };
 
-  const handleDateChange = (value: any) => {
+  const handleDateChange = (
+    start: Date | string | null,
+    end: Date | string | null
+  ) => {
     setErrorMessages(false);
 
-    // Update this based on the actual value structure emitted by Datepicker
-    let startDate =
-      value instanceof Date ? value : value ? value[0] : new Date();
-    let endDate =
-      Array.isArray(value) && value.length > 1 ? value[1] : new Date();
+    const startDate = start instanceof Date ? formatDate(start) : start || "";
+    const endDate = end instanceof Date ? formatDate(end) : end || "";
 
-    setSearchParams({ ...searchParams, checkin: startDate, checkout: endDate });
-    console.log("Date change:", { startDate, endDate });
+    setSearchParams({
+      ...searchParams,
+      checkin: startDate,
+      checkout: endDate,
+    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!checkFormInputRequire()) {
       setErrorMessages(true);
-      return; // Exit the function if any field is empty
+      return;
     }
-    console.log("Submitting form with:", searchParams);
     onSearch(searchParams);
   };
 
   const checkFormInputRequire = () => {
     return Object.values(searchParams).every((value) => {
-      if (value) return true;
-      return value.trim() !== "";
+      if (typeof value === "string") {
+        return value.trim() !== "";
+      } else if (value) {
+        return true;
+      }
+      return true;
     });
   };
 
@@ -73,13 +85,20 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
         />
       </div>
 
-      <Datepicker
-        value={{
-          startDate: searchParams.checkin,
-          endDate: searchParams.checkout,
-        }}
-        onChange={handleDateChange}
-      />
+      <div className="relative z-50">
+        <label>Date Range</label>
+        <Datepicker
+          value={{
+            startDate: searchParams.checkin,
+            endDate: searchParams.checkout,
+          }}
+          onChange={(range) => {
+            if (range) {
+              handleDateChange(range.startDate, range.endDate);
+            }
+          }}
+        />
+      </div>
 
       <div>
         <label>Adults</label>
