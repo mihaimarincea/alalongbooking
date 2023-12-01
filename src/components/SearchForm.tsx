@@ -1,22 +1,15 @@
 import React, { useState } from "react";
+import Datepicker from "react-tailwindcss-datepicker";
 
 interface Props {
   onSearch: (params: any) => void; // Adjust the type as needed
 }
 
 const SearchForm: React.FC<Props> = ({ onSearch }) => {
-  const today = new Date();
-  const inThirtyDays = new Date(today);
-  inThirtyDays.setDate(inThirtyDays.getDate() + 30);
-
-  const formatDate = (date: Date) => {
-    return date.toISOString().split("T")[0];
-  };
-
   const [searchParams, setSearchParams] = useState({
     location: "",
-    checkin: formatDate(today),
-    checkout: formatDate(inThirtyDays),
+    checkin: "",
+    checkout: "",
     adults: "1",
     children: "0",
     infants: "0",
@@ -33,6 +26,19 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
     console.log("Form change:", { [e.target.name]: e.target.value });
   };
 
+  const handleDateChange = (value: any) => {
+    setErrorMessages(false);
+
+    // Update this based on the actual value structure emitted by Datepicker
+    let startDate =
+      value instanceof Date ? value : value ? value[0] : new Date();
+    let endDate =
+      Array.isArray(value) && value.length > 1 ? value[1] : new Date();
+
+    setSearchParams({ ...searchParams, checkin: startDate, checkout: endDate });
+    console.log("Date change:", { startDate, endDate });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!checkFormInputRequire()) {
@@ -44,7 +50,10 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
   };
 
   const checkFormInputRequire = () => {
-    return Object.values(searchParams).every((value) => value.trim() !== "");
+    return Object.values(searchParams).every((value) => {
+      if (value) return true;
+      return value.trim() !== "";
+    });
   };
 
   return (
@@ -56,55 +65,44 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
         <label>Location Search</label>
         <input
           type="text"
-          className="block  w-full  rounded-md border-0 py-2.5 pl-3 pr-2  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6"
+          className="block w-full rounded-md border-0 py-2.5 pl-3 pr-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6"
           name="location"
           value={searchParams.location}
           onChange={handleChange}
-          placeholder="Search a prefered Country, City"
+          placeholder="Search a preferred Country, City"
         />
       </div>
-      <div className="flex flex-wrap flex-row xs:flex-col sm:flex-col md:flex-row gap-4 justify-between">
-        <div className="flex-1">
-          <label>Date Arrival</label>
-          <input
-            type="date"
-            className="block appearance-none w-full rounded-md border-0 py-2.5 pl-2.5 pr-2  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            name="checkin"
-            value={searchParams.checkin}
-            onChange={handleChange}
-            placeholder="Today"
-          />
-        </div>
-        <div className="flex-1">
-          <label>Date CheckOut</label>
-          <input
-            type="date"
-            className="block w-full appearance-none rounded-md border-0 py-2.5 pl-2.5 pr-2  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            name="checkout"
-            value={searchParams.checkout}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Adults</label>
-          <input
-            type="number"
-            className="block w-[50px] rounded-md border-0 py-2.5 pl-2.5 pr-2  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            name="adults"
-            value={searchParams.adults}
-            onChange={handleChange}
-          />
-        </div>
+
+      <Datepicker
+        value={{
+          startDate: searchParams.checkin,
+          endDate: searchParams.checkout,
+        }}
+        onChange={handleDateChange}
+      />
+
+      <div>
+        <label>Adults</label>
+        <input
+          type="number"
+          className="block w-[50px] rounded-md border-0 py-2.5 pl-2.5 pr-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          name="adults"
+          value={searchParams.adults}
+          onChange={handleChange}
+        />
       </div>
+
+      {/* Add other fields like children, infants, pets, etc., if needed */}
+
       {errorMessage && (
-        <span className=" text-red-500 text-xs">
+        <span className="text-red-500 text-xs">
           Please fill in all the fields
         </span>
       )}
       <div>
         <button
           type="submit"
-          className="text-white md:text-l w-full mt-0 sm:mt-2 bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-md px-5 py-3 text-center me-2 "
+          className="text-white md:text-l w-full mt-0 sm:mt-2 bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-md px-5 py-3 text-center me-2"
         >
           Find your next long stay
         </button>
