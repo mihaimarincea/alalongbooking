@@ -42,7 +42,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#FAFBFC]">
       <div className="max-w-screen-xl	mx-auto flex flex-col lg:flex-row md:flex-row md:gap-12 h-screen md:h-auto">
-        <div className="md:max-w-sm h-full md:sticky top-0 p-4">
+        <div className="w-full md:max-w-[400px] h-full md:sticky top-0 p-4">
           <div className="mt-[35px]">
             <Logo resetSearch={resetSearch} />
           </div>
