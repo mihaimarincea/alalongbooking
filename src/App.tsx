@@ -35,16 +35,21 @@ const App: React.FC = () => {
     }
   };
 
+  const resetSearch = () => {
+    setSearchPerformed(false);
+  };
+
   return (
     <div className="min-h-screen bg-[#FAFBFC]">
       <div className="max-w-screen-xl	mx-auto flex flex-col lg:flex-row md:flex-row md:gap-12 h-screen md:h-auto">
         <div className="md:max-w-sm h-full md:sticky top-0 p-4">
           <div className="mt-[35px]">
-            <Logo />
+            <Logo resetSearch={resetSearch} />
           </div>
           <div className="mt-[70px]">
-            <h1 className="text-3xl md:text-3xl lg:text-5xl">
-              Where <span>adventure</span> meets <span>serenity</span>
+            <h1 className="text-4xl md:text-2xl lg:text-4xl">
+              Your<span> excuisite long term place </span>to enjoy your next{" "}
+              <span>adventure</span>
             </h1>
             <br />
             <p className="text-base md:text-md">
@@ -75,11 +80,11 @@ const App: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="max-w-6xl w-full absolute md:relative bg-white">
+        <div className="max-w-6xl w-full absolute md:relative bg-mainbg ">
           <div className="hidden md:block mt-5">
             {!searchPerformed && <Gallery />}
           </div>
-          <div className="mt-10">
+          <div className="mt-12">
             {isLoading ? (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
@@ -103,12 +108,12 @@ const App: React.FC = () => {
           </div>
           {searchPerformed && (
             <>
-              <div className="fixed md:hidden top-o w-full">
+              <div className="fixed md:hidden top-0 w-full">
                 <div className="flex w-full justify-center p-2 h-full min-h-[50px] bg-white-to-transparent">
-                  <Logo />
+                  <Logo resetSearch={resetSearch} />
                 </div>
               </div>
-              <div className="fixed md:hidden bottom-0 mx:auto w-full">
+              <div className="fixed md:hidden bottom-8 mx:auto w-full">
                 <div className="flex w-full justify-center p-2 h-full min-h-[70px]">
                   <button
                     onClick={toggleSheet}
@@ -121,10 +126,14 @@ const App: React.FC = () => {
             </>
           )}
           <div className="block md:hidden">
-            <Sheet isOpen={isSheetOpen} onClose={toggleSheet}>
+            <Sheet
+              isOpen={isSheetOpen}
+              onClose={toggleSheet}
+              snapPoints={[300, 300]}
+            >
               <Sheet.Container>
                 <Sheet.Header />
-                <Sheet.Content>
+                <Sheet.Content className="px-5">
                   <SearchForm onSearch={handleSearch} />
                 </Sheet.Content>
               </Sheet.Container>
