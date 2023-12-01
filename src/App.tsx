@@ -46,7 +46,7 @@ const App: React.FC = () => {
           <div className="mt-5">
             <Logo resetSearch={resetSearch} />
           </div>
-          <div className="mt-[70px]">
+          <div className="mt-[50px]">
             <h1 className="text-4xl md:text-2xl lg:text-4xl">
               Your<span> excuisite long term place </span>to enjoy your next{" "}
               <span>adventure</span>

@@ -56,7 +56,7 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
         <label>Location Search</label>
         <input
           type="text"
-          className="block w-full  rounded-md border-0 py-2.5 pl-3 pr-2  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6"
+          className="block  w-full  rounded-md border-0 py-2.5 pl-3 pr-2  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6"
           name="location"
           value={searchParams.location}
           onChange={handleChange}
@@ -68,7 +68,7 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
           <label>Date Arrival</label>
           <input
             type="date"
-            className="block w-full rounded-md border-0 py-2.5 pl-2.5 pr-2  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            className="block appearance-none w-full rounded-md border-0 py-2.5 pl-2.5 pr-2  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             name="checkin"
             value={searchParams.checkin}
             onChange={handleChange}
@@ -79,7 +79,7 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
           <label>Date CheckOut</label>
           <input
             type="date"
-            className="block w-full  rounded-md border-0 py-2.5 pl-2.5 pr-2  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            className="block w-full appearance-none rounded-md border-0 py-2.5 pl-2.5 pr-2  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             name="checkout"
             value={searchParams.checkout}
             onChange={handleChange}
