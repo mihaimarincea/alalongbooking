@@ -37,10 +37,18 @@ h4 {
 label {
   font-size: 12px;
   color: #122896;
+  font-weight: 600;
 }
 
 span {
   color: #122896;
+}
+
+.gallery {
+  position: relative;
+  margin-top: -170px;
+  opacity: 0.5;
+  zoom: 0.5;
 }
 
 input[type="date"] {
@@ -146,4 +154,8 @@ h1.text-lg.font-bold {
 
 .gallery-container img {
   border-radius: 9999px;
+}
+
+.flex.items-center.space-x-1\.5.border.border-gray-300.dark\:border-gray-700.rounded-md.px-2.py-1\.5 {
+  height: 40px;
 }

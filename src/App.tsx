@@ -43,7 +43,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-[#FAFBFC]">
       <div className="max-w-screen-xl	mx-auto flex flex-col lg:flex-row md:flex-row md:gap-12 h-screen md:h-auto">
         <div className="w-full md:max-w-[400px] h-full md:sticky top-0 p-4">
-          <div className="mt-5">
+          <div className="mt-5 z-50">
             <Logo resetSearch={resetSearch} />
           </div>
           <div className="mt-[50px]">
@@ -51,6 +51,9 @@ const App: React.FC = () => {
               Your<span> excuisite long term place </span>to enjoy your next{" "}
               <span>adventure</span>
             </h1>
+            <div className="mt-3">
+              <SearchForm onSearch={handleSearch} />
+            </div>
             <br />
             <p className="text-base md:text-md">
               Our curated unique destinations offer more than just a stay, they
@@ -59,10 +62,7 @@ const App: React.FC = () => {
             </p>
             <p className="text-base md:text-md"></p>
           </div>
-          <div className="mt-3">
-            <SearchForm onSearch={handleSearch} />
-          </div>
-          <div className="mt-[70px] opacity-70 text-sm flex flex-row gap-4 justify-between">
+          <div className="mt-[70px] opacity-70 text-sm flex flex-row gap-4 justify-between mb-1">
             <div>
               {" "}
               <p>Contact us</p>
@@ -129,7 +129,7 @@ const App: React.FC = () => {
             <Sheet
               isOpen={isSheetOpen}
               onClose={toggleSheet}
-              snapPoints={[650, 300]}
+              snapPoints={[650]}
             >
               <Sheet.Container>
                 <Sheet.Header />
