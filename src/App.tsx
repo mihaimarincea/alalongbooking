@@ -80,7 +80,7 @@ const App: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="max-w-6xl w-full absolute md:relative bg-mainbg ">
+        <div className="max-w-6xl w-full absolute md:relative bg-mainbg z-50 ">
           <div className="hidden md:block mt-5">
             {!searchPerformed && <Gallery />}
           </div>
