@@ -129,7 +129,7 @@ const App: React.FC = () => {
             <Sheet
               isOpen={isSheetOpen}
               onClose={toggleSheet}
-              snapPoints={[600, 300]}
+              snapPoints={[650, 300]}
             >
               <Sheet.Container>
                 <Sheet.Header />
