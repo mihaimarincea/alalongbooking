@@ -79,7 +79,7 @@ const App: React.FC = () => {
           <div className="hidden md:block mt-5">
             {!searchPerformed && <Gallery />}
           </div>
-          <div className="mt-8">
+          <div className="mt-10">
             {isLoading ? (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
@@ -102,16 +102,23 @@ const App: React.FC = () => {
             )}
           </div>
           {searchPerformed && (
-            <div className="fixed md:hidden bottom-0 mx:auto w-full">
-              <div className="flex w-full justify-center p-2 h-full min-h-[70px]">
-                <button
-                  onClick={toggleSheet}
-                  className="md:hidden fixed text-white shadow-md bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl font-medium rounded-lg text-md px-5 py-3"
-                >
-                  Refine Your Search
-                </button>
+            <>
+              <div className="fixed md:hidden top-o w-full">
+                <div className="flex w-full justify-center p-2 h-full min-h-[50px] bg-white-to-transparent">
+                  <Logo />
+                </div>
               </div>
-            </div>
+              <div className="fixed md:hidden bottom-0 mx:auto w-full">
+                <div className="flex w-full justify-center p-2 h-full min-h-[70px]">
+                  <button
+                    onClick={toggleSheet}
+                    className="md:hidden fixed text-white shadow-md bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl font-medium rounded-lg text-md px-5 py-3"
+                  >
+                    Refine Your Search
+                  </button>
+                </div>
+              </div>
+            </>
           )}
           <div className="block md:hidden">
             <Sheet isOpen={isSheetOpen} onClose={toggleSheet}>
