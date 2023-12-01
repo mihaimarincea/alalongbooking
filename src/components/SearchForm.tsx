@@ -98,7 +98,7 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
               startDate: searchParams.checkin,
               endDate: searchParams.checkout,
             }}
-            popoverDirection="up"
+            popoverDirection="down"
             onChange={(range) => {
               if (range) {
                 handleDateChange(range.startDate, range.endDate);
