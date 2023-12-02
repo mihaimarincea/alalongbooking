@@ -72,7 +72,7 @@ const App: React.FC = () => {
               <p>Privacy Policy</p>
               <p>General Data Protection</p>
               <br />
-              <p>Copywrite 2023 @ À la longue</p>{" "}
+              <p>Copywrite 2024 @ À la longue</p>{" "}
             </div>
             <div>
               {" "}
