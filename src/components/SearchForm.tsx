@@ -92,8 +92,9 @@ const SearchForm: React.FC<Props> = ({ onSearch, closeModal }) => {
           <label>Dates for Check In and Check Out</label>
           <Datepicker
             inputClassName={
-              "w-full rounded-md border-0 py-2.5 pl-3 pr-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6"
+              "calendar-picker w-full rounded-md border-0 py-2.5 pl-3 pr-2 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6"
             }
+            readOnly={true}
             useRange={false}
             primaryColor={"indigo"}
             value={{

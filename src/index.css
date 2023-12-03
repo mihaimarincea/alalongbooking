@@ -159,3 +159,12 @@ h1.text-lg.font-bold {
 .flex.items-center.space-x-1\.5.border.border-gray-300.dark\:border-gray-700.rounded-md.px-2.py-1\.5 {
   height: 40px;
 }
+
+input.calendar-picker button {
+  width: 100%;
+  text-align: right;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  top: 0;
+}
